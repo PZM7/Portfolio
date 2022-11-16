@@ -77,6 +77,10 @@ nav>h2{
     flex-direction: column;
     align-items: center;
 }
+
+.fondo p{
+    margin-bottom: 5px;
+}
 #fondo_index p{
     font-weight: 600;
 }
