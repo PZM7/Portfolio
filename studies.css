@@ -1,0 +1,71 @@
+*{
+    font-size: 100;
+}
+
+.card{
+    height: 300px;
+    width: 400px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 15px rgb(51, 15, 1);
+    margin: 7px 0px 40px 0px;
+    animation-duration: 2s;
+    animation-name: slidein;
+}
+.cabecera{
+    width: 100%;    
+    background: rgb(63,206,251);
+    background: radial-gradient(circle, rgba(63,206,251,1) 0%, rgba(72,63,251,1) 100%);
+    border-radius: 12px 12px 0px 0px;
+    color: white;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    animation-duration: 2s;
+    animation-name: slidein2;
+}
+
+.info{
+    padding: 12px;
+    animation-duration: 2s;
+    animation-name: slidein2;
+}
+
+.circulo img{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    box-shadow: 2px 2px 15px rgb(51, 15, 1);
+}
+
+@keyframes slidein {
+    0% {
+      height: 0;
+      width: 0;
+      opacity: 0;
+    }
+
+    75%{
+    }
+  
+    100% {
+
+    }
+  }
+
+  @keyframes slidein2 {
+    0% {
+      height: 0;
+      width: 0;
+      opacity: 0;
+    }
+
+    96%{
+        opacity: 0;
+    }
+  
+    100% {
+
+    }
+  }
