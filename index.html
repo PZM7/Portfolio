@@ -4,41 +4,113 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Pedro Zahonero - Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/7e5b2d153f.js" crossorigin="anonymous"></script>
+    <script defer src="theme.js"></script>
     <script defer src="app.js"></script>
+    <script defer src="phone-popup.js"></script>
+    <script>
+        // Aplicar tema inmediatamente para prevenir flash
+        (function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.documentElement.classList.add('theme-loaded');
+        })();
+    </script>
 </head>
 <body>
     <header>
         <nav>
-            <h2>My Portfolio</h2>
-            <h2>(imagen)</h2>
+            <h2>Pedro Zahonero</h2>
             <button class="nav-toggle" aria-label="Abrir menú">
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-menu">
-                <li class="nav-menu-item"><a href="index.html" class="nav-menu-link nav-link">Inicio</a></li>
+                <li class="nav-menu-item"><a href="index.html" class="nav-menu-link nav-menu-link_active">Inicio</a></li>
                 <li class="nav-menu-item"><a href="studies.html" class="nav-menu-link nav-link">Studies</a></li>
-                <li class="nav-menu-item"><a href="" class="nav-menu-link nav-link nav-menu-link_active">About Me</a></li>
-              </ul>
+                <li class="nav-menu-item"><a href="about.html" class="nav-menu-link nav-link">About Me</a></li>
+            </ul>
         </nav>
     </header>
-    <div class="fondo" id="fondo_index">
-        <p>Hi! I'm Pedro Zahonero Mangas a junior Software Engineering. I just finished my university studies at the University of Oviedo.</p> <p>Throughout my training I have strengthened my spirit of teamwork, initiative and involvement in tasks, as well as my knowledge of languages like Italian, through a Erasmus experience in Italy, or English thanks to intensive courses.
-        </p><p>Without having any work experience I come with a desire to work, keep learning about software engineering and climb in my carreer as a computer scientist. The way I like to work the most is as a frontend developer but there is no problem if I have to do some backend work. I consider myself a very calm and ambitious person but sometimes a bit lazy. I always try to improve, both personally and at work, and any improvement comments are always welcome.</p>
-        
-     
-        
-        
-    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Pedro Zahonero</h1>
+                <h2 class="hero-subtitle">Desarrollador de Software Full-Stack</h2>
+                <p class="hero-tagline">Creando soluciones digitales innovadoras con Ruby on Rails, React y Elasticsearch</p>
+                <p class="hero-location"><i class="fas fa-map-marker-alt"></i> Oviedo, Asturias</p>
+                <p class="hero-status"><i class="fas fa-circle"></i> Disponible para nuevas oportunidades</p>
+                
+                <div class="hero-buttons">
+                    <a href="#proyectos" class="btn-primary">
+                        <i class="fas fa-code"></i> Ver Proyectos
+                    </a>
+                    <a href="cv.pdf" class="btn-secondary" download>
+                        <i class="fas fa-download"></i> Descargar CV
+                    </a>
+                    <a href="mailto:pedro@email.com" class="btn-contact">
+                        <i class="fas fa-envelope"></i> Contactar
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">2+</span>
+                    <span class="stat-label">Años de Experiencia</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Tecnologías Dominadas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Idiomas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Skills Section -->
+    <section class="quick-skills">
+        <div class="skills-container">
+            <h3>Habilidades Principales</h3>
+            <div class="skills-showcase">
+                <span class="skill-badge">Ruby on Rails</span>
+                <span class="skill-badge">React</span>
+                <span class="skill-badge">Elasticsearch</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">SQL</span>
+                <span class="skill-badge">TypeScript</span>
+                <span class="skill-badge">HTML/CSS</span>
+                <span class="skill-badge">Python</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Preview -->
+    <section class="about-preview">
+        <div class="about-container">
+            <h3>Sobre Mí</h3>
+            <p>Soy un ingeniero de software apasionado por crear soluciones digitales que marquen la diferencia. Actualmente trabajo en Betterplace desarrollando aplicaciones web full-stack con Ruby on Rails y React.</p>
+            <p>Mi experiencia incluye optimización de búsquedas con Elasticsearch, desarrollo de APIs RESTful, y colaboración en equipos ágiles. Siempre busco aprender nuevas tecnologías y mejorar mis habilidades.</p>
+            <a href="about.html" class="btn-about">Conoce más sobre mí</a>
+        </div>
+    </section>
+    
     <footer>
         <div class="social">
-            <a>Correo</a>
-            <a>Telefono</a>
-            <a>Instagram</a>
-            <a>Github</a>
-
+            <a href="mailto:pedro@email.com"><i class="fas fa-envelope"></i> Email</a>
+            <a href="#" class="phone-link" data-phone="+34600000000"><i class="fas fa-phone"></i> Teléfono</a>
+            <a href="https://linkedin.com/in/pedro-zahonero-mangas-152690210" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://instagram.com/pzm7" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+            <a href="https://github.com/PZM7" target="_blank"><i class="fab fa-github"></i> GitHub</a>
         </div>
     </footer>
 </body>
