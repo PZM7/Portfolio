@@ -1,68 +1,52 @@
-// Navegación móvil
 const navToggle = document.querySelector('.nav-toggle');
-const navMenu = document.querySelector('.nav-menu');
+const navActions = document.querySelector('.nav-actions');
+const navLinks = [...document.querySelectorAll('.nav-links a')];
+const themeToggle = document.querySelector('.theme-toggle');
+const sections = [...document.querySelectorAll('main section[id]')];
 
-if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('nav-menu_visible');
-    });
+function setMenu(open) {
+    if (!navToggle || !navActions) return;
+    navToggle.setAttribute('aria-expanded', String(open));
+    navActions.classList.toggle('is-open', open);
+    document.body.classList.toggle('nav-open', open);
+    navToggle.querySelector('.sr-only').textContent = open ? 'Cerrar menú' : 'Abrir menú';
 }
 
-// Función para obtener el nombre del archivo actual
-function filename() {
-    return window.location.pathname.split('/').pop();
+navToggle?.addEventListener('click', () => setMenu(navToggle.getAttribute('aria-expanded') !== 'true'));
+navLinks.forEach((link) => link.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setMenu(false); });
+window.addEventListener('resize', () => { if (window.innerWidth > 980) setMenu(false); });
+
+function getStoredTheme() {
+    try { return localStorage.getItem('portfolio-theme'); } catch (_) { return null; }
 }
 
-// Funcionalidad del modal (solo para studies.html)
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('desarrollador-modal');
-    const clickableCard = document.querySelector('.clickable-card');
-    const closeBtn = document.querySelector('.modal-close');
-    const footer = document.querySelector('footer');
-    
-    // Solo ejecutar si estamos en studies.html y existe el modal
-    if (modal && clickableCard) {
-        // Abrir modal al hacer clic en la tarjeta
-        clickableCard.addEventListener('click', function() {
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-            if (footer) {
-                footer.style.display = 'none';
-            }
-        });
-        
-        // Cerrar modal con el botón X
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function() {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                if (footer) {
-                    footer.style.display = 'block';
-                }
-            });
-        }
-        
-        // Cerrar modal al hacer clic fuera del contenido
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                if (footer) {
-                    footer.style.display = 'block';
-                }
-            }
-        });
-        
-        // Cerrar modal con la tecla Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.style.display === 'block') {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-                if (footer) {
-                    footer.style.display = 'block';
-                }
-            }
-        });
+function setTheme(theme, persist = true) {
+    document.documentElement.dataset.theme = theme;
+    themeToggle?.setAttribute('aria-checked', String(theme === 'dark'));
+    if (persist) {
+        try { localStorage.setItem('portfolio-theme', theme); } catch (_) { /* Funciona sin almacenamiento. */ }
     }
+}
+
+setTheme(document.documentElement.dataset.theme || 'light', false);
+themeToggle?.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+    if (!getStoredTheme()) setTheme(event.matches ? 'dark' : 'light', false);
 });
 
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        navLinks.forEach((link) => {
+            const isCurrent = link.getAttribute('href') === `#${visible.target.id}`;
+            if (isCurrent) link.setAttribute('aria-current', 'true');
+            else link.removeAttribute('aria-current');
+        });
+    }, { rootMargin: '-25% 0px -60%', threshold: [0.05, 0.25, 0.5] });
+    sections.forEach((section) => observer.observe(section));
+}
+
+const year = document.getElementById('current-year');
+if (year) year.textContent = String(new Date().getFullYear());

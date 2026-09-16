@@ -1,117 +1,224 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedro Zahonero - Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Portfolio de Pedro Zahonero Mangas, Full-Stack Developer especializado en Ruby on Rails, React, TypeScript, PostgreSQL y Apache Kafka.">
+    <meta name="author" content="Pedro Zahonero Mangas">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="Pedro Zahonero Mangas | Full-Stack Developer">
+    <meta property="og:description" content="Full-Stack Developer especializado en Ruby on Rails, React y TypeScript.">
+    <meta name="theme-color" content="#0b1220">
+    <title>Pedro Zahonero Mangas | Full-Stack Developer</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/7e5b2d153f.js" crossorigin="anonymous"></script>
-    <script defer src="theme.js"></script>
-    <script defer src="app.js"></script>
-    <script defer src="phone-popup.js"></script>
     <script>
-        // Aplicar tema inmediatamente para prevenir flash
-        (function() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            document.documentElement.classList.add('theme-loaded');
-        })();
+        try {
+            const savedTheme = localStorage.getItem('portfolio-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.dataset.theme = savedTheme || (prefersDark ? 'dark' : 'light');
+        } catch (_) {
+            document.documentElement.dataset.theme = 'light';
+        }
     </script>
+    <script defer src="app.js"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <h2>Pedro Zahonero</h2>
-            <button class="nav-toggle" aria-label="Abrir menú">
-                <i class="fas fa-bars"></i>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="site-header">
+        <nav class="nav shell" aria-label="Navegación principal">
+            <a class="brand" href="#inicio" aria-label="Ir al inicio">
+                <span class="brand-mark" aria-hidden="true">PZ</span>
+                <span class="brand-name">Pedro Zahonero</span>
+            </a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+                <span class="sr-only">Abrir menú</span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
             </button>
-            <ul class="nav-menu">
-                <li class="nav-menu-item"><a href="index.html" class="nav-menu-link nav-menu-link_active">Inicio</a></li>
-                <li class="nav-menu-item"><a href="studies.html" class="nav-menu-link nav-link">Studies</a></li>
-                <li class="nav-menu-item"><a href="about.html" class="nav-menu-link nav-link">About Me</a></li>
-            </ul>
+            <div class="nav-actions">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#impacto">Impacto</a></li>
+                    <li><a href="#experiencia">Experiencia</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#stack">Stack</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <button class="theme-toggle" type="button" role="switch" aria-checked="false">
+                    <span class="sr-only">Cambiar tema de color</span>
+                    <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18">
+                        <path d="M12 3v2m0 14v2M3 12h2m14 0h2M5.64 5.64l1.42 1.42m9.88 9.88 1.42 1.42m0-12.72-1.42 1.42M7.06 16.94l-1.42 1.42M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
         </nav>
     </header>
-    
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">Pedro Zahonero</h1>
-                <h2 class="hero-subtitle">Desarrollador de Software Full-Stack</h2>
-                <p class="hero-tagline">Creando soluciones digitales innovadoras con Ruby on Rails, React y Elasticsearch</p>
-                <p class="hero-location"><i class="fas fa-map-marker-alt"></i> Oviedo, Asturias</p>
-                <p class="hero-status"><i class="fas fa-circle"></i> Disponible para nuevas oportunidades</p>
-                
-                <div class="hero-buttons">
-                    <a href="#proyectos" class="btn-primary">
-                        <i class="fas fa-code"></i> Ver Proyectos
-                    </a>
-                    <a href="cv.pdf" class="btn-secondary" download>
-                        <i class="fas fa-download"></i> Descargar CV
-                    </a>
-                    <a href="mailto:pedro@email.com" class="btn-contact">
-                        <i class="fas fa-envelope"></i> Contactar
-                    </a>
-                </div>
-            </div>
-            
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">2+</span>
-                    <span class="stat-label">Años de Experiencia</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">10+</span>
-                    <span class="stat-label">Tecnologías Dominadas</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">3</span>
-                    <span class="stat-label">Idiomas</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Quick Skills Section -->
-    <section class="quick-skills">
-        <div class="skills-container">
-            <h3>Habilidades Principales</h3>
-            <div class="skills-showcase">
-                <span class="skill-badge">Ruby on Rails</span>
-                <span class="skill-badge">React</span>
-                <span class="skill-badge">Elasticsearch</span>
-                <span class="skill-badge">JavaScript</span>
-                <span class="skill-badge">SQL</span>
-                <span class="skill-badge">TypeScript</span>
-                <span class="skill-badge">HTML/CSS</span>
-                <span class="skill-badge">Python</span>
+    <main id="contenido">
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="shell hero-layout">
+                <div class="hero-copy">
+                    <p class="eyebrow"><span aria-hidden="true"></span> Oviedo, Asturias · Remoto e híbrido</p>
+                    <h1 id="hero-title">Full-Stack Developer especializado en <strong>Ruby on Rails, React y TypeScript</strong></h1>
+                    <p class="hero-lead">Construyo y evoluciono aplicaciones web de producto, desde APIs y procesamiento asíncrono hasta interfaces React, con especial atención al rendimiento, la mantenibilidad y la entrega continua.</p>
+                    <div class="hero-cta" aria-label="Acciones principales">
+                        <a class="button button-primary" href="#impacto">Ver resultados <span aria-hidden="true">↓</span></a>
+                        <a class="button button-secondary" href="#proyectos">Ver proyectos</a>
+                    </div>
+                    <div class="hero-links" aria-label="Perfiles y currículum">
+                        <a href="https://github.com/PZM7" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                        <a href="https://www.linkedin.com/in/pedro-zahonero-mangas-152690210/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+                        <a href="CV_Pedro_Zahonero_ES.docx" download>Descargar CV <span aria-hidden="true">↓</span></a>
+                    </div>
+                </div>
+                <aside class="hero-panel" aria-label="Perfil profesional resumido">
+                    <p class="panel-label">Perfil actual</p>
+                    <div class="role-block"><span class="role-index">01</span><div><strong>Producto web</strong><span>Más de dos años de experiencia</span></div></div>
+                    <div class="role-block"><span class="role-index">02</span><div><strong>Backend y frontend</strong><span>Rails, React y TypeScript</span></div></div>
+                    <div class="role-block"><span class="role-index">03</span><div><strong>Trabajo colaborativo</strong><span>Producto, CTO y Customer Support</span></div></div>
+                    <p class="panel-note">Equipo de aplicación de dos personas · Entregas semanales</p>
+                </aside>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Me Preview -->
-    <section class="about-preview">
-        <div class="about-container">
-            <h3>Sobre Mí</h3>
-            <p>Soy un ingeniero de software apasionado por crear soluciones digitales que marquen la diferencia. Actualmente trabajo en Betterplace desarrollando aplicaciones web full-stack con Ruby on Rails y React.</p>
-            <p>Mi experiencia incluye optimización de búsquedas con Elasticsearch, desarrollo de APIs RESTful, y colaboración en equipos ágiles. Siempre busco aprender nuevas tecnologías y mejorar mis habilidades.</p>
-            <a href="about.html" class="btn-about">Conoce más sobre mí</a>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="social">
-            <a href="mailto:pedro@email.com"><i class="fas fa-envelope"></i> Email</a>
-            <a href="#" class="phone-link" data-phone="+34600000000"><i class="fas fa-phone"></i> Teléfono</a>
-            <a href="https://linkedin.com/in/pedro-zahonero-mangas-152690210" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://instagram.com/pzm7" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://github.com/PZM7" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-    </footer>
+        <section class="section impact-section" id="impacto" aria-labelledby="impacto-title">
+            <div class="shell">
+                <div class="section-heading">
+                    <p class="section-kicker">Impacto medible</p>
+                    <h2 id="impacto-title">Resultados con contexto, no cifras aisladas</h2>
+                    <p>Mejoras realizadas sobre una aplicación de producto en producción, dentro de un equipo pequeño y con despliegues aproximadamente semanales.</p>
+                </div>
+                <div class="impact-grid">
+                    <article class="impact-card">
+                        <p class="impact-number">~25.000</p>
+                        <h3>notificaciones procesadas al día</h3>
+                        <p>Procesamiento paralelo con Apache Kafka para un servicio independiente con dos topics, un consumidor y canales de email y Telegram.</p>
+                    </article>
+                    <article class="impact-card">
+                        <p class="impact-number">45–60 s <span>→</span> 1–5 s</p>
+                        <h3>consulta de destinatarios</h3>
+                        <p>Reescritura y adaptación de una consulta durante la migración de PostgreSQL 13 a PostgreSQL 17.</p>
+                    </article>
+                    <article class="impact-card">
+                        <p class="impact-number">20 min <span>→</span> 8 min</p>
+                        <h3>build de Docker</h3>
+                        <p>Ajustes de configuración en GitLab CI/CD e incorporación de pruebas automatizadas al pipeline.</p>
+                    </article>
+                    <article class="impact-card">
+                        <p class="impact-number impact-number-text">Migración técnica completa de Webpack a Vite</p>
+                        <h3>configuración de toda la aplicación</h3>
+                        <p>Configuración migrada para toda la aplicación; pendiente de ajustes finales de UI antes de su despliegue en producción.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="experiencia" aria-labelledby="experiencia-title">
+            <div class="shell">
+                <div class="section-heading split-heading">
+                    <div><p class="section-kicker">Experiencia</p><h2 id="experiencia-title">Construcción y evolución de producto</h2></div>
+                    <p>Trabajo de extremo a extremo: comprender necesidades, estimar, implementar, comprobar y entregar.</p>
+                </div>
+                <div class="timeline">
+                    <article class="timeline-item">
+                        <div class="timeline-meta"><p>ene 2024 — actualidad</p><span>Remoto / híbrido · Oviedo</span></div>
+                        <div class="timeline-content">
+                            <p class="company">Betterplace</p>
+                            <h3>Software Developer</h3>
+                            <p>Desarrollo full-stack con Ruby on Rails, React y TypeScript en un equipo de aplicación de dos personas. Colaboración directa con Producto, CTO y Customer Support dentro de una metodología Agile formal.</p>
+                            <ul class="work-list">
+                                <li>Sistema de notificaciones basado en Kafka para email y Telegram.</li>
+                                <li>Optimización de PostgreSQL durante la migración de la versión 13 a la 17.</li>
+                                <li>Completé la migración técnica de toda la aplicación de Webpack a Vite en una rama independiente, manteniendo las entregas habituales mientras se finalizan los ajustes de UI previos al despliegue en producción.</li>
+                                <li>Informes editables de propiedades con Grover y Puppeteer.</li>
+                                <li>Mejoras en Docker y GitLab CI/CD, con pruebas automatizadas en el pipeline.</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="timeline-item timeline-item-compact">
+                        <div class="timeline-meta"><p>oct 2023 — ene 2024</p><span>4 meses</span></div>
+                        <div class="timeline-content">
+                            <p class="company">Betterplace</p>
+                            <h3>Prácticas de empresa</h3>
+                            <p>Desarrollo de funcionalidades web con Ruby on Rails y React, consultas con Elasticsearch y pruebas con RSpec en entornos Docker.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section projects-section" id="proyectos" aria-labelledby="proyectos-title">
+            <div class="shell">
+                <div class="section-heading"><p class="section-kicker">Proyectos</p><h2 id="proyectos-title">Trabajo verificable fuera del producto principal</h2></div>
+                <div class="projects-grid">
+                    <article class="project-card project-card-featured">
+                        <div class="project-topline"><span>Proyecto personal · Público</span><span class="project-number">01</span></div>
+                        <h3>FakeStoreDashboard</h3>
+                        <p class="project-summary">Dashboard responsive para explorar un catálogo remoto con búsqueda, filtros, ordenación y detalle de producto.</p>
+                        <dl class="project-details">
+                            <div><dt>Problema</dt><dd>Presentar y explorar los datos de Fake Store API con estados de carga, error y vacío comprensibles.</dd></div>
+                            <div><dt>Decisión técnica</dt><dd>Estado local para un alcance pequeño, peticiones paralelas y transformaciones en memoria con <code>useMemo</code>.</dd></div>
+                            <div><dt>Resultado</dt><dd>Flujo completo de catálogo y detalle, adaptado a móvil, tablet y escritorio.</dd></div>
+                        </dl>
+                        <ul class="tag-list" aria-label="Tecnologías de FakeStoreDashboard"><li>React 19</li><li>TypeScript</li><li>Vite</li><li>React Router</li><li>Tailwind CSS</li></ul>
+                        <a class="text-link" href="https://github.com/PZM7/FakeStoreDashboard" target="_blank" rel="noopener noreferrer">Ver repositorio en GitHub <span aria-hidden="true">↗</span></a>
+                    </article>
+                    <article class="project-card">
+                        <div class="project-topline"><span>Trabajo de Fin de Grado · 2025</span><span class="project-number">02</span></div>
+                        <h3>AutoFlow</h3>
+                        <p class="project-summary">Entorno CI/CD contenerizado para automatizar pipelines de proyectos Spring, Node.js y .NET.</p>
+                        <dl class="project-details">
+                            <div><dt>Decisión técnica</dt><dd>Agentes especializados y una librería compartida de pipelines para mantener una estructura común entre stacks.</dd></div>
+                            <div><dt>Resultado</dt><dd>Integración en un mismo entorno de build, análisis de calidad y ejecución de pruebas de navegador.</dd></div>
+                        </dl>
+                        <ul class="tag-list" aria-label="Tecnologías de AutoFlow"><li>Jenkins</li><li>Docker</li><li>SonarQube</li><li>PostgreSQL</li><li>Selenoid</li></ul>
+                        <p class="project-note">Proyecto académico sin repositorio público enlazado.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="stack" aria-labelledby="stack-title">
+            <div class="shell">
+                <div class="section-heading split-heading">
+                    <div><p class="section-kicker">Stack</p><h2 id="stack-title">Tecnología aplicada al producto</h2></div>
+                    <p>Herramientas con las que he trabajado profesionalmente, organizadas por su función.</p>
+                </div>
+                <div class="stack-grid">
+                    <article class="stack-group"><p class="stack-index">01</p><h3>Backend</h3><ul><li class="priority">Ruby 3.3.11</li><li class="priority">Ruby on Rails 7.2.3</li><li>REST APIs</li><li>Active Record</li><li>Sidekiq</li><li>Redis</li><li>RSpec</li></ul></article>
+                    <article class="stack-group"><p class="stack-index">02</p><h3>Frontend</h3><ul><li class="priority">React 19.2</li><li class="priority">TypeScript 5.9</li><li>JavaScript</li><li>Vite</li><li>Webpack</li><li>Redux Toolkit 2.12</li><li>React Redux 9.3</li><li>TanStack React Query 4.44</li><li>React Hooks</li><li>HTML y CSS</li></ul></article>
+                    <article class="stack-group"><p class="stack-index">03</p><h3>Datos y mensajería</h3><ul><li class="priority">PostgreSQL</li><li class="priority">Apache Kafka</li><li>SQL</li><li>Elasticsearch</li></ul></article>
+                    <article class="stack-group"><p class="stack-index">04</p><h3>Entrega y operaciones</h3><ul><li class="priority">Docker</li><li class="priority">GitLab CI/CD</li><li>Git</li><li>AWS Parameter Store</li><li>New Relic</li></ul></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section about-section" id="sobre-mi" aria-labelledby="sobre-mi-title">
+            <div class="shell about-layout">
+                <div><p class="section-kicker">Sobre mí</p><h2 id="sobre-mi-title">Primero el problema; después, la solución técnica.</h2></div>
+                <div class="about-copy">
+                    <p>Soy desarrollador full-stack con más de dos años de experiencia en aplicaciones web de producto. Trabajo principalmente con Ruby on Rails, React y TypeScript, y he participado en mejoras de rendimiento, sistemas de notificaciones basados en eventos, modernización del frontend y automatización de la entrega.</p>
+                    <p>Me gusta entender el problema de producto antes de elegir la solución técnica y colaborar con perfiles de Producto, Tecnología y Customer Support.</p>
+                    <div class="education"><p class="education-label">Formación</p><p><strong>Grado en Ingeniería Informática del Software</strong><br>Universidad de Oviedo · Finalizado en 2025</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section" id="contacto" aria-labelledby="contacto-title">
+            <div class="shell contact-layout">
+                <div><p class="section-kicker section-kicker-light">Contacto</p><h2 id="contacto-title">Hablemos de producto, Rails o React.</h2><p>Estoy disponible para conversar sobre oportunidades de desarrollo full-stack y backend.</p></div>
+                <div class="contact-links">
+                    <a href="mailto:pezahoneroman@gmail.com"><span>Email</span><strong>pezahoneroman@gmail.com</strong><span aria-hidden="true">↗</span></a>
+                    <a href="tel:+34635495787"><span>Teléfono</span><strong>+34 635 495 787</strong><span aria-hidden="true">↗</span></a>
+                    <a href="https://www.linkedin.com/in/pedro-zahonero-mangas-152690210/" target="_blank" rel="noopener noreferrer"><span>Perfil</span><strong>LinkedIn</strong><span aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/PZM7" target="_blank" rel="noopener noreferrer"><span>Código</span><strong>GitHub</strong><span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer"><div class="shell footer-layout"><p>© <span id="current-year">2026</span> Pedro Zahonero Mangas</p><a href="#inicio">Volver arriba <span aria-hidden="true">↑</span></a></div></footer>
 </body>
 </html>
