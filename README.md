@@ -53,6 +53,6 @@ El script recrea `dist` a partir de los archivos canónicos y evita mantener dos
 
 ## Despliegue
 
-La configuración de Sites utiliza `dist` como salida generada. La URL canónica configurada en los metadatos es `https://pedro-zahonero-portfolio.pzm7.chatgpt.site/`.
+La configuración de Sites utiliza `dist` como salida generada. La web se publica con GitHub Pages desde la raíz de `main`; la URL canónica es `https://pzm7.github.io/Portfolio/`.
 
 La generación del artefacto no publica ni modifica ninguna rama remota.
