@@ -6,6 +6,7 @@ Portfolio profesional en español orientado a posiciones de Full-Stack Developer
 
 - HTML5 semántico
 - CSS moderno (Grid, Flexbox, variables y media queries)
+- Tipografía Erode (Fontshare)
 - JavaScript nativo
 
 ## Ejecución local
@@ -26,20 +27,32 @@ El proyecto no utiliza un gestor de paquetes y no tiene suites de lint, tests, t
 node --check app.js
 ```
 
-Al ser un sitio estático, `index.html`, `style.css`, `app.js`, `favicon.svg` y el CV forman directamente el artefacto publicable.
+La raíz es la única fuente editable. Para generar el artefacto publicable en `dist`, ejecuta:
+
+```powershell
+.\scripts\build.ps1
+```
+
+El script recrea `dist` a partir de los archivos canónicos y evita mantener dos copias manualmente.
 
 ## Estructura
 
 ```text
 .
 ├── index.html                    Página única del portfolio
-├── style.css                    Diseño, temas y responsive
-├── app.js                       Navegación, tema y mejoras de interacción
+├── style.css                    Diseño (tema oscuro único) y responsive
+├── app.js                       Menú, índice de trabajo, comparativa de consultas y animaciones
+├── assets/                      Retrato de la sección Sobre mí
 ├── favicon.svg                  Icono del sitio
 ├── CV_Pedro_Zahonero_ES.docx    CV descargable
+├── robots.txt                  Directivas para rastreadores
+├── sitemap.xml                 Mapa del sitio
+├── scripts/build.ps1           Generación reproducible de dist
 └── README.md                    Documentación del proyecto
 ```
 
 ## Despliegue
 
-El repositorio no incluye actualmente una configuración de despliegue automatizado ni una URL de producción verificada.
+La configuración de Sites utiliza `dist` como salida generada. La URL canónica configurada en los metadatos es `https://pedro-zahonero-portfolio.pzm7.chatgpt.site/`.
+
+La generación del artefacto no publica ni modifica ninguna rama remota.

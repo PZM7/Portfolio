@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pedro-zahonero-portfolio.pzm7.chatgpt.site/sitemap.xml
+
